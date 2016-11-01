@@ -20,7 +20,7 @@ protocol Request {
 }
 
 extension Request {
-    func url(endpoint: String) -> URL? {
+    func url(endpoint: String, params additionalParams: [String: Any]? = nil) -> URL? {
         var components: URLComponents? = URLComponents(string: endpoint)
         components?.query = path
         

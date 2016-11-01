@@ -18,6 +18,8 @@ protocol Service {
 
 class HTTPService: Service {
     let endpoint: String = "http://api.openweathermap.org/data/2.5"
+    let serviceKey: String = "95d190a434083879a6398aafd54d9e73"
+    
     let session: URLSession
     
     init() {
@@ -25,7 +27,7 @@ class HTTPService: Service {
     }
     
     func request(from request: Request) throws -> URLRequest {
-        guard let url = request.url(endpoint: endpoint) else {
+        guard let url = request.url(endpoint: endpoint, params: ["APIKEY": serviceKey]) else {
             throw RequestError.invalidURL
         }
         
