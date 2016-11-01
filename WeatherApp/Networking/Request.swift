@@ -13,33 +13,45 @@ enum RequestType {
     case post
 }
 
-protocol Request {
-    var path: String { get }
-    var type: RequestType { get }
-    var params: [String: Any] { get }
+struct Request<ResponseData, SerialiserType: Serialiser> where SerialiserType.ResponseData == ResponseData {
+    let path: String
+    let type: RequestType
+    let params: [String: Any]
+    let serialiser: SerialiserType
 }
 
 extension Request {
-    func url(endpoint: String, params additionalParams: [String: Any]? = nil) -> URL? {
-        var components: URLComponents? = URLComponents(string: endpoint)
-        components?.query = path
+    func url(endpoint: String, servicePath: String, params additionalParams: [String: Any]? = nil) -> URL? {
+        var components: URLComponents = URLComponents()
+        components.scheme = "http"
+        components.host = endpoint
+        components.path = servicePath + path
         
         if self.type == .get {
-            components?.queryItems = self.params.map({ (key, value) -> URLQueryItem in
+            components.queryItems = self.params.map({ (key, value) -> URLQueryItem in
                 return URLQueryItem(name: key, value: String(describing: value))
             })
         }
         
-        return components?.url
-    }
+        if let serviceParams = additionalParams {
+            let moreParams: [URLQueryItem] = serviceParams.map({ (key, value) -> URLQueryItem in
+                return URLQueryItem(name: key, value: String(describing: value))
+            })
+        
+            if components.queryItems != nil {
+                components.queryItems?.append(contentsOf: moreParams)
+            } else {
+                components.queryItems = moreParams
+            }
+        }
+        
+        return components.url
+    }    
 }
 
-struct CityWeatherRequest {
-    let path: String = "weather"
-    let type: RequestType = .get
-    let params: [String: Any]
+extension Request {
     
-    init(city: String) {
-        params = ["q": city]
+    static func weather(for city: String) -> Request<CityWeather, CityWeatherSerialiser> {
+        return Request<CityWeather, CityWeatherSerialiser>(path: "weather", type: .get, params: ["q": city], serialiser: CityWeatherSerialiser())
     }
 }

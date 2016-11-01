@@ -8,6 +8,9 @@
 
 import Foundation
 
-struct City {
-    
+struct CityWeather {
+    let mainType: String
+    let description: String
+    let tempreture: Double
+    let humidity: Double
 }
