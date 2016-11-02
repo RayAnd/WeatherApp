@@ -13,11 +13,13 @@ enum RequestType {
     case post
 }
 
-struct Request<ResponseData, SerialiserType: Serialiser> where SerialiserType.ResponseData == ResponseData {
-    let path: String
-    let type: RequestType
-    let params: [String: Any]
-    let serialiser: SerialiserType
+protocol Request {
+    associatedtype SerializerType: ResponseSerializer
+    
+    var path: String { get }
+    var type: RequestType { get }
+    var params: [String: Any] { get }
+    var serializer: SerializerType { get }
 }
 
 extension Request {
@@ -49,9 +51,18 @@ extension Request {
     }    
 }
 
-extension Request {
+struct WeatherSearchReqest: Request {
+    typealias SerializerType = WeatherSearchResponseSerializer
     
-    static func weather(for city: String) -> Request<CityWeather, CityWeatherSerialiser> {
-        return Request<CityWeather, CityWeatherSerialiser>(path: "weather", type: .get, params: ["q": city], serialiser: CityWeatherSerialiser())
+    let path: String = "find"
+    let type: RequestType = .get
+    let params: [String: Any]
+    let serializer: WeatherSearchResponseSerializer = WeatherSearchResponseSerializer()
+    
+    init(city: String) {
+        params = [
+            "q": city,
+            "type": "like"
+        ]
     }
 }

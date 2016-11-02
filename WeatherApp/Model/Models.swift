@@ -7,10 +7,32 @@
 //
 
 import Foundation
+import CoreLocation
+
+struct Town {
+    let id: Int32
+    let city: String
+    let country: String
+    let coordinates: CLLocationCoordinate2D
+}
+
+struct WeatherForecast {
+    let icon: String
+    let forecast: String
+    let details: String
+}
+
+struct Temperature {
+    let temperature: Double
+    let presure: Double
+    let humidity: Double
+    let max: Double
+    let min: Double
+}
 
 struct CityWeather {
-    let mainType: String
-    let description: String
-    let tempreture: Double
-    let humidity: Double
+    let town: Town
+    let date: Date
+    let weather: [WeatherForecast]
+    let temperature: Temperature
 }

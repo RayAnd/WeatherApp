@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="23" y="897"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Favorites-->
         <scene sceneID="ZoY-Bj-fIc">
             <objects>
                 <tableViewController id="Jwc-e6-B9P" sceneMemberID="viewController">
@@ -43,6 +44,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="zKC-pU-gho" kind="show" identifier="showCityForecast" id="YXr-kf-0kh"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -50,7 +54,7 @@
                             <outlet property="delegate" destination="Jwc-e6-B9P" id="eAH-pm-kmu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="RzA-AC-xxK"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="RzA-AC-xxK"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="1aG-GG-dwr" id="yeH-Zb-WI4"/>
                     </connections>
@@ -67,22 +71,34 @@
             </objects>
             <point key="canvasLocation" x="1987" y="563"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Search City-->
         <scene sceneID="Iue-Xg-9ie">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DZW-Wm-DUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="OTY-TH-VYX" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ma9-gP-MtV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" prompt="Enter town, city or postcode" id="aYg-nh-gPI">
+                            <rect key="frame" x="0.0" y="64" width="375" height="75"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="OTY-TH-VYX" id="tK7-lh-Odp"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="u1H-sg-uql">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="103" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u1H-sg-uql" id="Mhh-lO-86k">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="zKC-pU-gho" kind="show" identifier="showCityForecast" id="tFy-fz-Yxn"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -90,11 +106,61 @@
                             <outlet property="delegate" destination="OTY-TH-VYX" id="xqU-62-bug"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="glW-VE-xqm"/>
+                    <navigationItem key="navigationItem" title="Search City" id="glW-VE-xqm"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="kxX-2K-hEZ" id="NvR-Pt-xb9"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DZW-Wm-DUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="kxX-2K-hEZ">
+                    <connections>
+                        <outlet property="delegate" destination="OTY-TH-VYX" id="jmY-Z2-6No"/>
+                        <outlet property="searchBar" destination="aYg-nh-gPI" id="GdQ-ac-Pbv"/>
+                        <outlet property="searchContentsController" destination="OTY-TH-VYX" id="JgG-Xf-ybv"/>
+                        <outlet property="searchResultsDataSource" destination="OTY-TH-VYX" id="nwk-Vm-313"/>
+                        <outlet property="searchResultsDelegate" destination="OTY-TH-VYX" id="f9I-N3-sRh"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1986" y="1268"/>
+        </scene>
+        <!--<City>-->
+        <scene sceneID="lRM-JE-4mK">
+            <objects>
+                <viewController id="zKC-pU-gho" customClass="CityForecastController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="neR-Rd-qm0"/>
+                        <viewControllerLayoutGuide type="bottom" id="VeG-vl-dxe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fa8-J4-UjE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODM-ey-eFc">
+                                <rect key="frame" x="152.5" y="72" width="69.5" height="86"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="72"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6F-1d-c0f">
+                                <rect key="frame" x="166" y="165" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c6F-1d-c0f" firstAttribute="top" secondItem="ODM-ey-eFc" secondAttribute="bottom" constant="7" id="Cah-Ki-9Zc"/>
+                            <constraint firstItem="ODM-ey-eFc" firstAttribute="centerX" secondItem="Fa8-J4-UjE" secondAttribute="centerX" id="Mhl-wo-yY1"/>
+                            <constraint firstItem="ODM-ey-eFc" firstAttribute="top" secondItem="Fa8-J4-UjE" secondAttribute="topMargin" constant="72" id="aLD-kN-l3Q"/>
+                            <constraint firstItem="c6F-1d-c0f" firstAttribute="centerX" secondItem="Fa8-J4-UjE" secondAttribute="centerX" id="eZ3-bs-9RI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="&lt;City&gt;" id="X22-gs-mB0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qNu-GI-kE7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3160.8000000000002" y="895.50224887556226"/>
         </scene>
         <!--Search-->
         <scene sceneID="ZaM-s7-ia4">
@@ -131,4 +197,7 @@
             <point key="canvasLocation" x="1038" y="563"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tFy-fz-Yxn"/>
+    </inferredMetricsTieBreakers>
 </document>
