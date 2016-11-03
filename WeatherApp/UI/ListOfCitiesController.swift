@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  ListOfCitiesController.swift
 //  WeatherApp
 //
 //  Created by Andrey Kozlov on 02/11/2016.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController {
+class ListOfCitiesController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,11 +81,35 @@ class SearchViewController: UITableViewController {
         return true
     }
     */
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
 
-extension SearchViewController: UISearchControllerDelegate, UISearchBarDelegate {
+extension ListOfCitiesController: SegueHandlerType {
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.dismiss(animated: true, completion: nil)
+    enum SegueIdentifier: String {
+        case showCityForecast
+        case showSearchController
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let identifier = self.segueIdentifier(for: segue)
+        switch identifier {
+            case .showCityForecast: break
+//            if let controller = segue.destination as? CityForecastController {
+                //                    controller.model = ForecastControllerModel(
+//            }
+            case .showSearchController: break
+        }
     }
 }
+

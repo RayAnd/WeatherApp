@@ -18,6 +18,7 @@
 		A7588BDA1DC965F2003843D3 /* CityForecastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7588BD91DC965F2003843D3 /* CityForecastController.swift */; };
 		A7588BDD1DC9671C003843D3 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7588BDC1DC9671C003843D3 /* SegueHandler.swift */; };
 		A7588BDF1DC967C9003843D3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7588BDE1DC967C9003843D3 /* SearchViewController.swift */; };
+		A766A1351DCAB385006B5D73 /* ListOfCitiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A766A1341DCAB385006B5D73 /* ListOfCitiesController.swift */; };
 		C817D7086496660315F38E16 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C817DA07CAA8855633E901AC /* ServiceTests.swift */; };
 		C817D7DE239ECAD5C695F53A /* SerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C817D987D961642A1398F194 /* SerializerTests.swift */; };
 		C817DCBF6155F23F08B034AF /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C817DACCC41B2FFECE396097 /* ResponseTests.swift */; };
@@ -54,6 +55,7 @@
 		A7588BD91DC965F2003843D3 /* CityForecastController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityForecastController.swift; sourceTree = "<group>"; };
 		A7588BDC1DC9671C003843D3 /* SegueHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
 		A7588BDE1DC967C9003843D3 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A766A1341DCAB385006B5D73 /* ListOfCitiesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfCitiesController.swift; sourceTree = "<group>"; };
 		C817D7697BA7180EE7ED7414 /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		C817D987D961642A1398F194 /* SerializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializerTests.swift; sourceTree = "<group>"; };
 		C817DA07CAA8855633E901AC /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				A7588BDB1DC96709003843D3 /* Utils */,
 				A7588BD91DC965F2003843D3 /* CityForecastController.swift */,
 				A7588BDE1DC967C9003843D3 /* SearchViewController.swift */,
+				A766A1341DCAB385006B5D73 /* ListOfCitiesController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				A75646871DC56A9100EDE96F /* AppDelegate.swift in Sources */,
 				A7588BDF1DC967C9003843D3 /* SearchViewController.swift in Sources */,
 				A7588BD31DC801AC003843D3 /* Request.swift in Sources */,
+				A766A1351DCAB385006B5D73 /* ListOfCitiesController.swift in Sources */,
 				A7588BDD1DC9671C003843D3 /* SegueHandler.swift in Sources */,
 				D78ACF9D1DC8C79A0065473D /* Response.swift in Sources */,
 				A7588BD11DC8018B003843D3 /* Service.swift in Sources */,
