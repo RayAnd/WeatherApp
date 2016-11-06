@@ -28,7 +28,7 @@ class PlaceTableCellTableViewCell: UITableViewCell, TableViewControllerCellForMo
         // Configure the view for the selected state
     }
 
-    func configure(with object: PlaceViewModel) {
-        self.textLabel?.text = object.cityName
+    func configure(with object: PlaceViewModel?) {
+        self.textLabel?.text = object?.cityName
     }
 }

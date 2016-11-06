@@ -31,8 +31,45 @@
                                 <rect key="frame" x="0.0" y="103" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u1H-sg-uql" id="Mhh-lO-86k">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" id="46C-gF-Xbp" customClass="LoadingCell" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="147" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="46C-gF-Xbp" id="fPQ-Np-Cv6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WJG-z1-zLc">
+                                            <rect key="frame" x="177" y="11" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="WJG-z1-zLc" firstAttribute="centerX" secondItem="fPQ-Np-Cv6" secondAttribute="centerX" id="IHR-nw-eIP"/>
+                                        <constraint firstItem="WJG-z1-zLc" firstAttribute="centerY" secondItem="fPQ-Np-Cv6" secondAttribute="centerY" id="xkR-30-6GG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoResultsCell" id="xHE-f7-62L" customClass="NoResultsCell" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="191" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xHE-f7-62L" id="0mR-YC-cV3">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMP-yX-tsh">
+                                            <rect key="frame" x="146" y="11" width="82.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EMP-yX-tsh" firstAttribute="centerX" secondItem="0mR-YC-cV3" secondAttribute="centerX" id="eUn-MD-SCi"/>
+                                        <constraint firstItem="EMP-yX-tsh" firstAttribute="centerY" secondItem="0mR-YC-cV3" secondAttribute="centerY" id="nMi-i1-fVq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -44,7 +81,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="K7V-PJ-OAw" userLabel="Search"/>
                     <connections>
-                        <outlet property="searchBar" destination="aYg-nh-gPI" id="I9T-BG-bCK"/>
+                        <outlet property="searchBar" destination="aYg-nh-gPI" id="Ny8-0X-H1O"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZW-Wm-DUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -69,7 +106,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pCh-Ni-Nm4" id="sUq-s7-zfg">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -115,7 +152,6 @@
         <!--Search-->
         <scene sceneID="ZaM-s7-ia4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fz0-JV-Do4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController navigationBarHidden="YES" id="9l0-NJ-vId" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="AtB-9h-Hkp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wId-Gq-CHh">
@@ -126,6 +162,7 @@
                         <segue destination="OTY-TH-VYX" kind="relationship" relationship="rootViewController" id="dYH-U6-Vco"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fz0-JV-Do4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1556" y="1693"/>
         </scene>

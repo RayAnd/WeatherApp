@@ -10,7 +10,7 @@ import Foundation
 
 protocol TableViewControllerCell {
     static var identifier: String { get }
-    func configure(with object: Any)
+    func configure(with object: Any?)
 }
 
 protocol TableViewControllerCellModel {
@@ -19,11 +19,11 @@ protocol TableViewControllerCellModel {
 protocol TableViewControllerCellForModel : TableViewControllerCell {
     associatedtype Model
     
-    func configure(with object: Model)
+    func configure(with object: Model?)
 }
 
 extension TableViewControllerCellForModel {
-    func configure(with object: Any) {
+    func configure(with object: Any?) {
         if let model = object as? Model {
             configure(with: model)
         }

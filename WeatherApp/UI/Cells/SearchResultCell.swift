@@ -10,6 +10,10 @@ import UIKit
 
 struct SearchResultsModel {
     let cityName: String
+    
+    init(town: Town) {
+        cityName = town.city + ", \(town.country)"
+    }
 }
 
 class SearchResultCell: UITableViewCell, TableViewControllerCellForModel {
@@ -28,8 +32,8 @@ class SearchResultCell: UITableViewCell, TableViewControllerCellForModel {
         // Configure the view for the selected state
     }
     
-    func configure(with object: SearchResultsModel) {
-        self.textLabel?.text = object.cityName
+    func configure(with object: SearchResultsModel?) {
+        self.textLabel?.text = object?.cityName
     }
 
 }
