@@ -7,46 +7,58 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ListOfCitiesController: UITableViewController {
 
+    var cities: [Town] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        cities = [
+            Town(id: 1, city: "London", country: "UK", coordinates: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+        ]
+        
+        self.clearsSelectionOnViewWillAppear = false
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return cities.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTableCellTableViewCell.identifier, for: indexPath) as! PlaceTableCellTableViewCell
 
-        // Configure the cell...
-
+        cell.configure(with: PlaceViewModel(cityName: cities[indexPath.row].city))
+        
         return cell
     }
-    */
-
+    
+    @IBAction func showSearchController(_ sender: Any) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let searchResultsController = storyboard.instantiateViewController(withIdentifier: SearchViewController.storyboardIdentifier) as? SearchViewController else {
+//            fatalError("Unable to instatiate a SearchViewController from the storyboard.")
+//        }
+//        
+//        let searchController = UISearchController(searchResultsController: searchResultsController)
+//        searchController.searchResultsUpdater = self
+//        searchController.searchBar.placeholder = NSLocalizedString("Enter keyword (e.g. iceland)", comment: "")
+//        
+//        let searchContainer = UISearchContainerViewController(searchController: searchController)
+//        searchContainer.title = NSLocalizedString("Search", comment: "")
+//        
+//        let searchNavigationController = UINavigationController(rootViewController: searchContainer)
+//        return searchNavigationController
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -81,17 +93,6 @@ class ListOfCitiesController: UITableViewController {
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension ListOfCitiesController: SegueHandlerType {

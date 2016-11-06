@@ -1,5 +1,5 @@
 //
-//  SearchResultCell.swift
+//  PlaceTableCellTableViewCell.swift
 //  WeatherApp
 //
 //  Created by Andrey Kozlov on 06/11/2016.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-struct SearchResultsModel {
+struct PlaceViewModel {
     let cityName: String
 }
 
-class SearchResultCell: UITableViewCell, TableViewControllerCellForModel {
-    typealias Model = SearchResultsModel
+class PlaceTableCellTableViewCell: UITableViewCell, TableViewControllerCellForModel {
+    typealias Model = PlaceViewModel
     
-    static let identifier: String = "SearchResultCell"
+    static let identifier: String = "PlaceTableCellTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,9 +27,8 @@ class SearchResultCell: UITableViewCell, TableViewControllerCellForModel {
 
         // Configure the view for the selected state
     }
-    
-    func configure(with object: SearchResultsModel) {
+
+    func configure(with object: PlaceViewModel) {
         self.textLabel?.text = object.cityName
     }
-
 }

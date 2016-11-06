@@ -28,6 +28,8 @@
 		D78ACF951DC8B4510065473D /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78ACF931DC8B4510065473D /* SwiftyJSON.framework */; };
 		D78ACF9B1DC8BCC80065473D /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78ACF9A1DC8BCC80065473D /* Serialization.swift */; };
 		D78ACF9D1DC8C79A0065473D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78ACF9C1DC8C79A0065473D /* Response.swift */; };
+		D79A6C741DCFB1F50067B8DA /* PlaceTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A6C731DCFB1F50067B8DA /* PlaceTableCellTableViewCell.swift */; };
+		D79A6C7D1DCFB6B90067B8DA /* TableViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A6C7C1DCFB6B90067B8DA /* TableViewControllerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		D78ACF931DC8B4510065473D /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		D78ACF9A1DC8BCC80065473D /* Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
 		D78ACF9C1DC8C79A0065473D /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		D79A6C731DCFB1F50067B8DA /* PlaceTableCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceTableCellTableViewCell.swift; sourceTree = "<group>"; };
+		D79A6C7C1DCFB6B90067B8DA /* TableViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 		A75646851DC56A9100EDE96F /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				D79A6C7B1DCFB6A20067B8DA /* Base */,
 				A7588BCF1DC8016B003843D3 /* Networking */,
 				A7588BCE1DC7FC33003843D3 /* Model */,
 				A7588BCD1DC7FC1B003843D3 /* UI */,
@@ -186,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				A7A260291DCEBAD00048B5B7 /* SearchResultCell.swift */,
+				D79A6C731DCFB1F50067B8DA /* PlaceTableCellTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -197,6 +203,14 @@
 				D78ACF931DC8B4510065473D /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D79A6C7B1DCFB6A20067B8DA /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D79A6C7C1DCFB6B90067B8DA /* TableViewControllerCell.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,9 +343,11 @@
 				A75646871DC56A9100EDE96F /* AppDelegate.swift in Sources */,
 				A7588BDF1DC967C9003843D3 /* SearchViewController.swift in Sources */,
 				A7588BD31DC801AC003843D3 /* Request.swift in Sources */,
+				D79A6C7D1DCFB6B90067B8DA /* TableViewControllerCell.swift in Sources */,
 				A766A1351DCAB385006B5D73 /* ListOfCitiesController.swift in Sources */,
 				A7588BDD1DC9671C003843D3 /* SegueHandler.swift in Sources */,
 				D78ACF9D1DC8C79A0065473D /* Response.swift in Sources */,
+				D79A6C741DCFB1F50067B8DA /* PlaceTableCellTableViewCell.swift in Sources */,
 				A7588BD11DC8018B003843D3 /* Service.swift in Sources */,
 				A7A2602A1DCEBAD00048B5B7 /* SearchResultCell.swift in Sources */,
 				A7588BDA1DC965F2003843D3 /* CityForecastController.swift in Sources */,

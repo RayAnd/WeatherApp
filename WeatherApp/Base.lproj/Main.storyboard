@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="103" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u1H-sg-uql" id="Mhh-lO-86k">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -45,19 +45,9 @@
                     <navigationItem key="navigationItem" title="Title" id="K7V-PJ-OAw" userLabel="Search"/>
                     <connections>
                         <outlet property="searchBar" destination="aYg-nh-gPI" id="I9T-BG-bCK"/>
-                        <outlet property="searchDisplayController" destination="kxX-2K-hEZ" id="NvR-Pt-xb9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZW-Wm-DUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="kxX-2K-hEZ">
-                    <connections>
-                        <outlet property="delegate" destination="OTY-TH-VYX" id="jmY-Z2-6No"/>
-                        <outlet property="searchBar" destination="aYg-nh-gPI" id="GdQ-ac-Pbv"/>
-                        <outlet property="searchContentsController" destination="OTY-TH-VYX" id="JgG-Xf-ybv"/>
-                        <outlet property="searchResultsDataSource" destination="OTY-TH-VYX" id="nwk-Vm-313"/>
-                        <outlet property="searchResultsDelegate" destination="OTY-TH-VYX" id="f9I-N3-sRh"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2449" y="1693"/>
         </scene>
@@ -69,12 +59,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="3yh-Hy-E9O">
+                            <rect key="frame" x="0.0" y="136" width="375" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pCh-Ni-Nm4">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PlaceTableCellTableViewCell" id="pCh-Ni-Nm4" customClass="PlaceTableCellTableViewCell" customModule="WeatherApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pCh-Ni-Nm4" id="sUq-s7-zfg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -99,7 +94,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ma2-5x-dTX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1557" y="950"/>
+            <point key="canvasLocation" x="1556" y="949.47526236881572"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m5N-xd-dJ1">
@@ -120,6 +115,7 @@
         <!--Search-->
         <scene sceneID="ZaM-s7-ia4">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fz0-JV-Do4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController navigationBarHidden="YES" id="9l0-NJ-vId" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="AtB-9h-Hkp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wId-Gq-CHh">
@@ -130,7 +126,6 @@
                         <segue destination="OTY-TH-VYX" kind="relationship" relationship="rootViewController" id="dYH-U6-Vco"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fz0-JV-Do4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1556" y="1693"/>
         </scene>

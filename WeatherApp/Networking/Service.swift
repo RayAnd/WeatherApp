@@ -13,6 +13,7 @@ let imageURLTemplate = "http://openweathermap.org/img/w/%@.png"
 
 enum RequestError: Error {
     case invalidURL
+    case responseDataInvalid
 }
 
 protocol Service {
@@ -49,10 +50,20 @@ class WeatherService: Service {
     func exequte<RequestType: Request>(request: RequestType, completion: @escaping (_ response: Response<RequestType.SerializerType.ResponseData>) -> ()) throws {
         session.dataTask(with: try self.request(from: request), completionHandler: { data, urlResponse, error in
             do {
-                let responseData = try request.serializer.parse(data!)
+                if let responseData = data {
+                    let responseObject = try request.serializer.parse(responseData)
             
-                DispatchQueue.main.async {
-                    completion(.success(responseData))
+                    DispatchQueue.main.async {
+                        completion(.success(responseObject))
+                    }
+                } else if let error = error {
+                    DispatchQueue.main.async {
+                        completion(.failed(error))
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        completion(.failed(RequestError.responseDataInvalid))
+                    }
                 }
             } catch let error {
                 DispatchQueue.main.async {
