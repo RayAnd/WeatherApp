@@ -10,15 +10,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--SearchController-->
         <scene sceneID="Iue-Xg-9ie">
             <objects>
-                <tableViewController id="OTY-TH-VYX" customClass="SearchViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="OTY-TH-VYX" userLabel="SearchController" customClass="SearchViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ma9-gP-MtV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" text="" prompt="Enter town, city or postcode" showsCancelButton="YES" id="aYg-nh-gPI">
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" prompt="Enter town, city or postcode" showsCancelButton="YES" id="aYg-nh-gPI">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
@@ -27,11 +27,11 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="u1H-sg-uql">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultCell" id="u1H-sg-uql" customClass="SearchResultCell" customModule="WeatherApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="103" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u1H-sg-uql" id="Mhh-lO-86k">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -42,8 +42,9 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="K7V-PJ-OAw"/>
+                    <navigationItem key="navigationItem" title="Title" id="K7V-PJ-OAw" userLabel="Search"/>
                     <connections>
+                        <outlet property="searchBar" destination="aYg-nh-gPI" id="I9T-BG-bCK"/>
                         <outlet property="searchDisplayController" destination="kxX-2K-hEZ" id="NvR-Pt-xb9"/>
                     </connections>
                 </tableViewController>
@@ -73,7 +74,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pCh-Ni-Nm4" id="sUq-s7-zfg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>

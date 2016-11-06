@@ -8,44 +8,45 @@
 
 import UIKit
 
+struct SearchData {
+    let searchResults: [Town]
+}
+
 class SearchViewController: UITableViewController {
 
+    var searchResults: SearchData = SearchData(searchResults: [])
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.searchBar.becomeFirstResponder()
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.searchResults.searchResults.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultCell.identifier, for: indexPath) as! SearchResultCell
 
-        // Configure the cell...
+        let town: Town = self.searchResults.searchResults[indexPath.row]
+        
+        cell.setData(SearchResultsModel(cityName: town.city))
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -87,5 +88,25 @@ extension SearchViewController: UISearchControllerDelegate, UISearchBarDelegate 
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            do {
+                try WeatherService().exequte(request: WeatherSearchReqest(city: searchText), completion: { [weak self] response in
+                    if case .success(let weather) = response {
+                        let cities: [Town] = weather.map { $0.town }
+                        self?.searchResults = SearchData(searchResults: cities)
+                        self?.tableView.reloadData()
+                    } else {
+                        print(response)
+                    }
+                })
+            } catch let error {
+                print(error)
+            }
+        }
     }
 }

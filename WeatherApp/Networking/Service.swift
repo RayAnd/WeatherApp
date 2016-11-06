@@ -51,9 +51,13 @@ class WeatherService: Service {
             do {
                 let responseData = try request.serializer.parse(data!)
             
-                completion(.success(responseData))
+                DispatchQueue.main.async {
+                    completion(.success(responseData))
+                }
             } catch let error {
-                completion(.failed(error))
+                DispatchQueue.main.async {
+                    completion(.failed(error))
+                }
             }
         }).resume()
     }
