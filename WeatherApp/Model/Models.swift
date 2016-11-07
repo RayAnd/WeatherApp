@@ -16,6 +16,12 @@ struct Town {
     let coordinates: CLLocationCoordinate2D
 }
 
+extension Town {
+    var fullCityName: String {
+        return city + ", \(country)"
+    }
+}
+
 struct WeatherForecast {
     let icon: String
     let forecast: String

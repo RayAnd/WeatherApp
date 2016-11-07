@@ -12,7 +12,7 @@ enum SearchState {
     case empty
     case loading
     case noResults
-    case results(data: [Town])
+    case results(data: [CityWeather])
 }
 
 extension SearchState: TableViewControllerModel {
@@ -39,7 +39,7 @@ extension SearchState: TableViewControllerModel {
             case .empty: return nil
             case .noResults: return nil
             case .loading: return nil
-            case .results(let data): return SearchResultsModel(town: data[indexPath.row])
+            case .results(let data): return SearchResultsModel(data: data[indexPath.row])
         }
     }
     
@@ -62,7 +62,9 @@ class SearchViewController: UITableViewController {
     var searchResults: SearchState = .noResults
     
     override func viewDidLoad() {
-        super.viewDidLoad()                
+        super.viewDidLoad()
+        
+        self.clearsSelectionOnViewWillAppear = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -84,18 +86,10 @@ class SearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return searchResults.dequeReusableCell(tableView, for: indexPath)
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.dismiss(animated: true, completion: nil)
-    }
-
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
             searchResults = .loading
@@ -104,8 +98,7 @@ extension SearchViewController: UISearchBarDelegate {
             do {
                 try WeatherService().exequte(request: WeatherSearchReqest(city: searchText), completion: { [weak self] response in
                     if case .success(let weather) = response {
-                        let cities: [Town] = weather.map { $0.town }
-                        self?.searchResults = .results(data: cities)
+                        self?.searchResults = .results(data: weather)
                         self?.tableView.reloadData()
                     } else {
                         print(response)
@@ -123,3 +116,22 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
 }
+
+extension SearchViewController: SegueHandlerType {
+    
+    enum SegueIdentifier: String {
+        case showCityForecast
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let identifier = self.segueIdentifier(for: segue)
+        switch identifier {
+        case .showCityForecast:
+            let selectedRowIndex = tableView.indexPathForSelectedRow!.row
+            if let controller = segue.destination as? CityForecastController, case .results(let weather) = self.searchResults  {
+                controller.model = ForecastControllerModel(model: weather[selectedRowIndex])
+            }
+        }
+    }
+}
+

@@ -11,8 +11,8 @@ import UIKit
 struct SearchResultsModel {
     let cityName: String
     
-    init(town: Town) {
-        cityName = town.city + ", \(town.country)"
+    init(data: CityWeather) {
+        cityName = data.town.fullCityName
     }
 }
 
