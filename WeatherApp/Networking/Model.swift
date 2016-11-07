@@ -34,6 +34,12 @@ struct Temperature {
     let min: Double
 }
 
+extension Temperature {
+    var temperatureValue: String {
+        return String(format: "%.0fº", temperature)
+    }
+}
+
 struct CityWeather {
     let town: Town
     let date: Date

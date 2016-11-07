@@ -86,6 +86,14 @@ class SearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return searchResults.dequeReusableCell(tableView, for: indexPath)
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -116,22 +124,3 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
 }
-
-extension SearchViewController: SegueHandlerType {
-    
-    enum SegueIdentifier: String {
-        case showCityForecast
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let identifier = self.segueIdentifier(for: segue)
-        switch identifier {
-        case .showCityForecast:
-            let selectedRowIndex = tableView.indexPathForSelectedRow!.row
-            if let controller = segue.destination as? CityForecastController, case .results(let weather) = self.searchResults  {
-                controller.model = ForecastControllerModel(model: weather[selectedRowIndex])
-            }
-        }
-    }
-}
-
