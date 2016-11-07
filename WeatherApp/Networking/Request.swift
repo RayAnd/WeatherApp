@@ -10,7 +10,6 @@ import Foundation
 
 enum RequestType {
     case get
-    case post
 }
 
 protocol Request {
@@ -18,7 +17,7 @@ protocol Request {
     
     var path: String { get }
     var type: RequestType { get }
-    var params: [String: Any] { get }
+    var params: [String: Any]? { get }
     var serializer: SerializerType { get }
 }
 
@@ -29,8 +28,8 @@ extension Request {
         components.host = endpoint
         components.path = servicePath + path
         
-        if self.type == .get {
-            components.queryItems = self.params.map({ (key, value) -> URLQueryItem in
+        if self.type == .get, let params = self.params {
+            components.queryItems = params.map({ (key, value) -> URLQueryItem in
                 return URLQueryItem(name: key, value: String(describing: value))
             })
         }
@@ -49,20 +48,4 @@ extension Request {
         
         return components.url
     }    
-}
-
-struct WeatherSearchReqest: Request {
-    typealias SerializerType = WeatherSearchResponseSerializer
-    
-    let path: String = "find"
-    let type: RequestType = .get
-    let params: [String: Any]
-    let serializer: WeatherSearchResponseSerializer = WeatherSearchResponseSerializer()
-    
-    init(city: String) {
-        params = [
-            "q": city,
-            "type": "like"
-        ]
-    }
 }
