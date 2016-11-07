@@ -10,36 +10,42 @@ import Foundation
 
 enum RequestType {
     case get
-    case post
 }
 
 protocol Request {
+    associatedtype SerializerType: ResponseSerializer
+    
     var path: String { get }
     var type: RequestType { get }
-    var params: [String: Any] { get }
+    var params: [String: Any]? { get }
+    var serializer: SerializerType { get }
 }
 
 extension Request {
-    func url(endpoint: String) -> URL? {
-        var components: URLComponents? = URLComponents(string: endpoint)
-        components?.query = path
+    func url(endpoint: String, servicePath: String, params additionalParams: [String: Any]? = nil) -> URL? {
+        var components: URLComponents = URLComponents()
+        components.scheme = "http"
+        components.host = endpoint
+        components.path = servicePath + path
         
-        if self.type == .get {
-            components?.queryItems = self.params.map({ (key, value) -> URLQueryItem in
+        if self.type == .get, let params = self.params {
+            components.queryItems = params.map({ (key, value) -> URLQueryItem in
                 return URLQueryItem(name: key, value: String(describing: value))
             })
         }
         
-        return components?.url
-    }
-}
-
-struct CityWeatherRequest {
-    let path: String = "weather"
-    let type: RequestType = .get
-    let params: [String: Any]
-    
-    init(city: String) {
-        params = ["q": city]
-    }
+        if let serviceParams = additionalParams {
+            let moreParams: [URLQueryItem] = serviceParams.map({ (key, value) -> URLQueryItem in
+                return URLQueryItem(name: key, value: String(describing: value))
+            })
+        
+            if components.queryItems != nil {
+                components.queryItems?.append(contentsOf: moreParams)
+            } else {
+                components.queryItems = moreParams
+            }
+        }
+        
+        return components.url
+    }    
 }

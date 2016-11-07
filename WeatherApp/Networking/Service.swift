@@ -7,36 +7,17 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+let imageURLTemplate = "http://openweathermap.org/img/w/%@.png"
 
 enum RequestError: Error {
     case invalidURL
+    case responseDataInvalid
 }
 
 protocol Service {
-    func exequte(request: Request, completion: () -> ()) throws
-}
-
-class HTTPService: Service {
-    let endpoint: String = "http://api.openweathermap.org/data/2.5"
-    let session: URLSession
+    var endpoint: String { get }
     
-    init() {
-        session = URLSession.shared
-    }
-    
-    func request(from request: Request) throws -> URLRequest {
-        guard let url = request.url(endpoint: endpoint) else {
-            throw RequestError.invalidURL
-        }
-        
-        let urlRequest: URLRequest = URLRequest(url: url)
-        
-        return urlRequest
-    }
-    
-    func exequte(request: Request, completion: () -> ()) throws {
-        session.dataTask(with: try self.request(from: request), completionHandler: { data, urlResponse, error in
-            
-        })
-    }
+    func exequte<RequestType: Request>(request: RequestType, completion: @escaping (_ response: Response<RequestType.SerializerType.ResponseData>) -> ()) throws
 }
